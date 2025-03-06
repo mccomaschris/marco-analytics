@@ -8,6 +8,7 @@ return [
 
     // URL paths to exclude from tracking (e.g., `/admin`, `/login`, `/api/*`)
     'ignored_paths' => [
+        'admin', // Ignore admin route
         'admin/*', // Ignore all admin routes
         'login', // Ignore login page
         'register', // Ignore registration page

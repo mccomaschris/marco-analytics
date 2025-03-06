@@ -11,10 +11,10 @@ class MarcoAnalyticsMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        $path = $request->path();
+        $path = rtrim($request->path(), '/'); // Remove trailing slashes
         $extension = pathinfo($path, PATHINFO_EXTENSION);
 
-        // Load ignored paths from the config
+        // Load ignored paths from config
         $ignoredPaths = config('marco-analytics.ignored_paths', []);
         $ignoredExtensions = config('marco-analytics.ignored_extensions', []);
 
@@ -25,7 +25,7 @@ class MarcoAnalyticsMiddleware
 
         // Ignore specific URL paths
         foreach ($ignoredPaths as $ignoredPath) {
-            if ($request->is($ignoredPath)) {
+            if ($request->is(trim($ignoredPath, '/'))) { // Trim ignored path slashes too
                 return $next($request);
             }
         }
