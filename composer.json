@@ -17,5 +17,8 @@
 		  "McComasChris\\MarcoAnalytics\\MarcoAnalyticsServiceProvider"
 		]
 	  }
+	},
+	"require-dev": {
+		"tightenco/duster": "^3.1"
 	}
-  }
+}
