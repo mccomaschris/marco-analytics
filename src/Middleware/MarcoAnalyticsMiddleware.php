@@ -11,31 +11,23 @@ class MarcoAnalyticsMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        // List of file extensions to ignore
-        $ignoredExtensions = ['js', 'css', 'png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'ico', 'woff', 'woff2', 'ttf', 'eot', 'otf'];
-
-        // Extract the file extension from the URL
         $path = $request->path();
         $extension = pathinfo($path, PATHINFO_EXTENSION);
 
-        // Skip tracking if it's a static file
+        // Load ignored paths from the config
+        $ignoredPaths = config('marco-analytics.ignored_paths', []);
+        $ignoredExtensions = config('marco-analytics.ignored_extensions', []);
+
+        // Ignore file extensions
         if (in_array($extension, $ignoredExtensions)) {
             return $next($request);
         }
 
-        // Skip tracking Livewire assets
-        if (str_starts_with($path, 'livewire/')) {
-            return $next($request);
-        }
-
-        // Skip tracking Laravel's built-in assets (e.g., /_debugbar/)
-        if (str_starts_with($path, '_debugbar')) {
-            return $next($request);
-        }
-
-        // Skip tracking API requests
-        if ($request->is('api/*')) {
-            return $next($request);
+        // Ignore specific URL paths
+        foreach ($ignoredPaths as $ignoredPath) {
+            if ($request->is($ignoredPath)) {
+                return $next($request);
+            }
         }
 
         // Detect device/browser and store analytics
