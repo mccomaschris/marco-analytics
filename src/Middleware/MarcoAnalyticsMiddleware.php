@@ -4,10 +4,10 @@ namespace McComasChris\MarcoAnalytics\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use McComasChris\MarcoAnalytics\Models\Analytics;
+use McComasChris\MarcoAnalytics\Models\MarcoAnalytics;
 use Jenssegers\Agent\Agent;
 
-class AnalyticsMiddleware
+class MarcoAnalyticsMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
@@ -41,7 +41,7 @@ class AnalyticsMiddleware
         // Detect device/browser and store analytics
         $agent = new Agent();
 
-        Analytics::create([
+        MarcoAnalytics::create([
             'url' => $request->fullUrl(),
             'browser' => $agent->browser(),
             'device' => $agent->isMobile() ? 'Mobile' : ($agent->isTablet() ? 'Tablet' : 'Desktop'),
