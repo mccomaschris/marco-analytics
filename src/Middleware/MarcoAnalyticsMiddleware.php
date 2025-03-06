@@ -33,6 +33,10 @@ class MarcoAnalyticsMiddleware
         // Detect device/browser and store analytics
         $agent = new Agent();
 
+        if (config('marco-analytics.ignore_bots') && $agent->isRobot()) {
+            return $next($request);
+        }
+
         MarcoAnalytics::create([
             'url' => $request->fullUrl(),
             'browser' => $agent->browser(),

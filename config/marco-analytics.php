@@ -16,4 +16,6 @@ return [
         'api/*', // Ignore API routes
         'debugbar/*' // Ignore Laravel Debugbar
     ],
+
+    'ignore_bots' => true,
 ];
