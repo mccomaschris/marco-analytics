@@ -1,12 +1,9 @@
 name: Duster Fix
 
-# Commits made in here will not trigger any workflows
-# Checkout Duster's documentation for a workaround
-
 on:
-    push:
-        branches: [ main ]
-    pull_request:
+  push:
+    branches: [ main ]
+  pull_request:
 
 jobs:
   duster:
@@ -32,6 +29,11 @@ jobs:
           commit_message: Dusting
           commit_user_name: GitHub Action
           commit_user_email: actions@github.com
+
+      - name: Debug Auto Commit Action Outputs
+        run: |
+          echo "Changes detected: ${{ steps.auto_commit_action.outputs.changes_detected }}"
+          echo "Commit hash: ${{ steps.auto_commit_action.outputs.commit_hash }}"
 
       - name: Ignore Duster commit in git blame
         if: steps.auto_commit_action.outputs.changes_detected == 'true'
