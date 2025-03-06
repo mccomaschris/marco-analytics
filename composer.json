@@ -1,0 +1,22 @@
+{
+	"name": "mccomaschris/marco-analytics",
+	"description": "A simple Laravel analytics package",
+	"type": "library",
+	"require": {
+	  "php": "^8.0",
+	  "illuminate/support": "^10.0",
+	  "jenssegers/agent": "^2.6"
+	},
+	"autoload": {
+	  "psr-4": {
+		"McComasChris\\MarcoAnalytics\\": "src/"
+	  }
+	},
+	"extra": {
+	  "laravel": {
+		"providers": [
+		  "McComasChris\\MarcoAnalytics\\MarcoAnalyticsServiceProvider"
+		]
+	  }
+	}
+  }
