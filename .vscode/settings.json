@@ -1,0 +1,5 @@
+{
+    "phpcs.executablePath": "~/.composer/vendor/bin/phpcs",
+    "phpcs.standard": "Laravel",
+    "editor.formatOnSave": true
+}

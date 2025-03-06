@@ -4,8 +4,8 @@ namespace McComasChris\MarcoAnalytics\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use McComasChris\MarcoAnalytics\Models\MarcoAnalytics;
 use Jenssegers\Agent\Agent;
+use McComasChris\MarcoAnalytics\Models\MarcoAnalytics;
 
 class MarcoAnalyticsMiddleware
 {
@@ -31,7 +31,7 @@ class MarcoAnalyticsMiddleware
         }
 
         // Detect device/browser and store analytics
-        $agent = new Agent();
+        $agent = new Agent;
 
         if (config('marco-analytics.ignore_bots') && $agent->isRobot()) {
             return $next($request);

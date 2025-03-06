@@ -2,9 +2,9 @@
 
 namespace McComaschris\MarcoAnalytics\Console;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use McComaschris\MarcoAnalytics\Models\MarcoAnalytics;
-use Carbon\Carbon;
 
 class PurgeMarcoAnalytics extends Command
 {
@@ -18,6 +18,6 @@ class PurgeMarcoAnalytics extends Command
 
         $deleted = MarcoAnalytics::where('created_at', '<', $cutoffDate)->delete();
 
-        $this->info("Deleted $deleted analytics records older than $days days.");
+        $this->info("Deleted {$deleted} analytics records older than {$days} days.");
     }
 }
