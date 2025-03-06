@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use McComasChris\MarcoAnalytics\Models\MarcoAnalytics;
 use Jenssegers\Agent\Agent;
 
-class AnalyticsMiddleware
+class MarcoAnalyticsMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
