@@ -7,14 +7,18 @@ use Illuminate\Support\ServiceProvider;
 class MarcoAnalyticsServiceProvider extends ServiceProvider
 {
     public function boot()
-    {
-        // Load Config
-        $this->publishes([
-            __DIR__.'/../config/marco-analytics.php' => config_path('marco-analytics.php'),
-        ], 'config');
+	{
+		// Load Config
+		$this->publishes([
+			__DIR__.'/../config/marco-analytics.php' => config_path('marco-analytics.php'),
+		], 'config');
 
-        $this->mergeConfigFrom(__DIR__.'/../config/marco-analytics.php', 'marco-analytics');
-    }
+		$this->mergeConfigFrom(__DIR__.'/../config/marco-analytics.php', 'marco-analytics');
+
+		// 🔥 Load Migrations (Fix)
+		$this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+	}
+
 
     public function register()
     {
