@@ -1,6 +1,6 @@
 <?
 
-namespace YourVendor\LaravelAnalytics\Models;
+namespace McComasChris\MarcoAnalytics\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
